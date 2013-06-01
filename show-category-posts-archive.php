@@ -1,39 +1,39 @@
 <?php
 /*
-    Plugin Name: Show Category Posts Archive
-    Plugin URI: http://john.do/
-    Description: Shows an archive of specific posts for a category (monthly or yearly).
-    Version: 0.1
-    Requires at least: 3.5
-    Author: John Saddington
-    License: GPL
+Plugin Name: Show Category Posts Archive
+Plugin URI: http://john.do/
+Description: Shows an archive of specific posts for a category (monthly or yearly).
+Version: 0.1
+Requires at least: 3.5
+Author: John Saddington
+License: GPL
 
-    == Description ==
+== Description ==
 
-    The Show Category Posts Archive will show a widget of specific posts for a category in monthly or yearly format. It shows only one category.
+The Show Category Posts Archive will show a widget of specific posts for a category in monthly or yearly format. It shows only one category.
 
-    == Installation ==
+== Installation ==
 
-    1. Upload "show-category-posts-archive" folder to "/wp-content/plugins/" directory.
-    2. Activate the plugin.
-    3. Add and customize via your Widgets.
-    4. Have fun.
+1. Upload "show-category-posts-archive" folder to "/wp-content/plugins/" directory.
+2. Activate the plugin.
+3. Add and customize via your Widgets.
+4. Have fun.
 
 */
 
 
-class WP_Category_Archive_Widget extends WP_Widget
+class scpa_widget extends WP_Widget
 {
     /**
      * Constructor.  Set description and call parent class.
      */
-    function WP_Category_Archive_Widget() 
+    function scpa_widget() 
     {
         /* Widget settings. */
-        $widget_ops = array("description" => "Display an archive listing of one specific category.");
+        $widget_ops = array("description" => "Display one specific category archive.");
 
         /* Create the widget. */
-        $this->WP_Widget("wp-category-archive", "Category Archive", $widget_ops);
+        $this->WP_Widget("scpa", "Category Archive", $widget_ops);
     }
 
 
@@ -115,7 +115,7 @@ class WP_Category_Archive_Widget extends WP_Widget
         }
         
         if ($display_style == "pulldown") {
-            echo "<select name=\"wp-category-archive-dropdown\" onchange=\"document.location.href=this.options[this.selectedIndex].value;\">";
+            echo "<select name=\"scpa-dropdown\" onchange=\"document.location.href=this.options[this.selectedIndex].value;\">";
             echo " <option value=\"\">" . $select_str . "</option>";
         } else if ($display_style == "list") {
             echo "<ul>";
@@ -327,13 +327,13 @@ class WP_Category_Archive_Widget extends WP_Widget
      */
     function register()
     {
-        register_widget("WP_Category_Archive_Widget");
+        register_widget("scpa_widget");
     }
     
 }
 
 
 // widgets_init hook, calls load widget function.
-add_action("widgets_init", array('WP_Category_Archive_Widget', 'register'));
+add_action("widgets_init", array('scpa_widget', 'register'));
 
 ?>
