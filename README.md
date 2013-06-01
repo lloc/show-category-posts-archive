@@ -1,4 +1,4 @@
-show-category-posts-archive
+Show Category Posts Archive
 ===================
 
 WordPress plugin to show specific categories only on sidebar.
