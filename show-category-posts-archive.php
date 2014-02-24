@@ -107,11 +107,11 @@ class scpa_widget extends WP_Widget
 
         $display_format = "F Y";
         $compare_format = "Ym";
-        $select_str = __("Select Month");
+        $select_str = __( 'Select Month', 'scpa' );
         if ($interval == "year") {
             $display_format = "Y";
             $compare_format = "Y";
-            $select_str = __("Select Year");
+            $select_str = __( 'Select Year', 'scpa' );
         }
         
         if ($display_style == "pulldown") {
@@ -336,4 +336,8 @@ class scpa_widget extends WP_Widget
 // widgets_init hook, calls load widget function.
 add_action("widgets_init", array('scpa_widget', 'register'));
 
-?>
+function scpa_plugin_init() {
+	load_plugin_textdomain( 'scpa', false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
+}
+add_action( 'plugins_loaded', 'scpa_plugin_init' );
+
